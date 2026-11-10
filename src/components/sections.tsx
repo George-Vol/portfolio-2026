@@ -22,10 +22,9 @@ function Corner({ className }: { className: string }) {
   return <span aria-hidden className={`absolute size-3 border-line-strong ${className}`} />;
 }
 
-// Checked at build time: the CV button appears once public/George_Volski_CV.pdf exists.
-const hasCv = existsSync(join(process.cwd(), "public", site.cv));
-
 export function Hero({ track }: { track: Track }) {
+  // Checked at build time: the CV button appears once the branch's PDF exists in /public.
+  const hasCv = existsSync(join(process.cwd(), "public", track.cv));
   return (
     <section className="relative isolate">
       <Blueprint />
@@ -48,7 +47,7 @@ export function Hero({ track }: { track: Track }) {
             View my work <Arrow className="rotate-135" />
           </Button>
           {hasCv && (
-            <Button href={site.cv} variant="ghost" prefetch={false} download>
+            <Button href={track.cv} variant="ghost" prefetch={false} download>
               Download CV
             </Button>
           )}

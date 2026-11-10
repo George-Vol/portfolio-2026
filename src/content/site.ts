@@ -5,7 +5,6 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://georgev.vercel.app", // set NEXT_PUBLIC_SITE_URL in Vercel once the domain is final
   email: "volskigeorge@gmail.com",
   linkedin: "https://www.linkedin.com/in/george-volski",
-  cv: "/George_Volski_CV.pdf",
   photo: "", // e.g. "/about/george.jpg" — empty shows a placeholder
   // Home page SEO. Each track has its own in tracks.ts.
   seoTitle: "George Volski — Developer & Designer",

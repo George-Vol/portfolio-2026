@@ -13,6 +13,7 @@ export type Track = {
   seoTitle: string;
   seoDescription: string;
   ogImage: string; // 1200×630 PNG in /public/og
+  cv: string; // PDF in /public; the Download CV button only shows once the file exists
   workTitle: string; // heading of the "Selected work" section
   about: string;
   contact: [lead: string, tail: string]; // closing line, tail is shown muted
@@ -33,6 +34,7 @@ export const tracks: Track[] = [
     seoDescription:
       "Full-stack developer building fast, reliable web and mobile products with React, Next.js, TypeScript and Node.js.",
     ogImage: "/og/dev.png",
+    cv: "/George_Volski_CV.pdf",
     workTitle: "Products I've designed, built and shipped.",
     about:
       "I studied law, worked as a junior architect and 3D visualization artist, then taught myself to code. Architecture trained my eye for layout, detail and how people actually use a space, and I bring that to every interface I build. Today I build full-stack products end to end, from Figma designs to production code.",
@@ -53,6 +55,7 @@ export const tracks: Track[] = [
     seoDescription:
       "UI/UX and graphic design by George Volski: web and mobile interfaces, design systems, 3D visualization and campaign visuals, made in Figma and Adobe Creative Suite.",
     ogImage: "/og/design.png",
+    cv: "/George_Volski_CV_Design.pdf",
     workTitle: "Interfaces and visuals, from first sketch to final screen.",
     about:
       "Before I designed screens, I designed buildings. As a junior architect and 3D visualization artist I learned proportion, light and how people move through a space. Now I bring that to interfaces: I design in Figma, refine through client reviews, and build component libraries that keep products consistent. And because I write the code too, my designs are made to ship.",
