@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# George Volski — Portfolio
 
-## Getting Started
-
-First, run the development server:
+Next.js (App Router) + TypeScript + Tailwind v4. Fully static, no backend. Deploy by importing the repo on Vercel.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content (no component changes needed)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+| --- | --- |
+| Name, email, LinkedIn, CV path, photo, about, skills, "Also built", home-page SEO | `src/content/site.ts` |
+| Sides of the portfolio (`/dev`, `/design`, …): hero copy, SEO, skills order | `src/content/tracks.ts` |
+| Case studies | `src/content/projects.ts` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Add a case study:** add an object to `projects` with `track: "dev"` (or `"design"`). Its card and page (`/dev/work/<slug>`) are generated. Placeholders have `draft: true`, which keeps them out of Google and the sitemap; remove it when the real content is in.
+- **Add a new side** (e.g. `/3d`): add an entry to `tracks` (with its own `ogImage`), then tag projects with that slug. It appears on the home selector. Visitors on a side never see links to the others.
+- **Images:** put files in `public/work/<slug>/` and set `src: "/work/<slug>/cover.png"`. Any image with an empty `src` shows a labelled placeholder.
+- **CV:** drop `George_Volski_CV.pdf` into `public/`. The "Download CV" button appears on the next build.
+- **Photo:** put it in `public/about/` and set `site.photo`.
+- **Domain:** set `NEXT_PUBLIC_SITE_URL` in Vercel (used for sitemap, canonical URLs and OG tags).
+- **Link-preview images:** `public/og/home.png`, `dev.png`, `design.png` (1200×630 PNG). Replace a file to change it.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app` — routes: `/` (selector), `/[track]`, `/[track]/work/[slug]`, `sitemap.ts`, `robots.ts`, `icon.svg` (favicon)
+- `src/components/sections.tsx` — Hero, Work, Also built, About, Skills, Contact
+- `src/components/Logo.tsx` — the G logo (favicon twin in `src/app/icon.svg`)
+- `src/components/ui.tsx` — Button, Tag, Label, Section, Shot (image/placeholder)
+- `src/components/InteractiveGrid.tsx` — cursor-reactive dot grid (canvas)
+- `src/components/Effects.tsx` — scroll reveal + reflective card edges that follow the cursor
+- Colours: CSS variables in `src/app/globals.css`. Dark only for now; light tokens and `ThemeToggle.tsx` are kept for later (see the comment in `Header.tsx`).
