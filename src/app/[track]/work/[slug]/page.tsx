@@ -41,6 +41,7 @@ export default async function CaseStudy({ params }: PageProps<"/[track]/work/[sl
   const p = find(track, slug);
   if (!p) notFound();
 
+  const labels = getTrack(track)!.caseLabels;
   const list = projectsFor(track);
   const next = list[(list.indexOf(p) + 1) % list.length];
 
@@ -81,10 +82,10 @@ export default async function CaseStudy({ params }: PageProps<"/[track]/work/[sl
         <Shot image={p.cover} priority className="reveal mt-12 aspect-[16/9]" sizes="(min-width: 1152px) 1100px, 100vw" />
 
         <div className="mt-16">
-          <Block label="The problem">
+          <Block label={labels.problem}>
             <p className="max-w-2xl text-xl leading-relaxed">{p.problem}</p>
           </Block>
-          <Block label="What I built">
+          <Block label={labels.built}>
             <ul className="max-w-2xl space-y-3">
               {p.built.map((b) => (
                 <li key={b} className="flex gap-3 text-lg">
@@ -94,7 +95,7 @@ export default async function CaseStudy({ params }: PageProps<"/[track]/work/[sl
               ))}
             </ul>
           </Block>
-          <Block label="Design decisions">
+          <Block label={labels.decisions}>
             <p className="max-w-2xl text-lg leading-relaxed text-muted">{p.design.text}</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {p.design.images.map((img) => (
@@ -102,7 +103,7 @@ export default async function CaseStudy({ params }: PageProps<"/[track]/work/[sl
               ))}
             </div>
           </Block>
-          <Block label="Result">
+          <Block label={labels.result}>
             <p className="max-w-2xl text-xl leading-relaxed">{p.result}</p>
           </Block>
         </div>

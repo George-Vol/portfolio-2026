@@ -35,11 +35,11 @@ export default async function TrackPage({ params }: PageProps<"/[track]">) {
   return (
     <>
       <Hero track={track} />
-      <Work projects={projectsFor(track.slug)} />
+      <Work projects={projectsFor(track.slug)} title={track.workTitle} />
       {track.showAlsoBuilt && <AlsoBuilt />}
-      <About index={next()} />
+      <About about={track.about} index={next()} />
       <Skills track={track} index={next()} />
-      <Contact index={next()} />
+      <Contact line={track.contact} index={next()} />
     </>
   );
 }

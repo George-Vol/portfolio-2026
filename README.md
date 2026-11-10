@@ -11,7 +11,7 @@ npm run dev
 | What | Where |
 | --- | --- |
 | Name, email, LinkedIn, CV path, photo, about, skills, "Also built", home-page SEO | `src/content/site.ts` |
-| Sides of the portfolio (`/dev`, `/design`, …): hero copy, SEO, skills order | `src/content/tracks.ts` |
+| Sides of the portfolio (`/dev`, `/design`, …): hero, work title, about, contact line, case-study headings, skills, SEO | `src/content/tracks.ts` |
 | Case studies | `src/content/projects.ts` |
 
 - **Add a case study:** add an object to `projects` with `track: "dev"` (or `"design"`). Its card and page (`/dev/work/<slug>`) are generated. Placeholders have `draft: true`, which keeps them out of Google and the sitemap; remove it when the real content is in.

@@ -1,11 +1,11 @@
 // A "track" is one side of the portfolio (/dev, /design, ...).
 // To add a new one: add an entry here and tag projects with its slug in projects.ts.
 
-import { skillRows } from "./site";
+import { skillRows, skills } from "./site";
 
 export type Track = {
   slug: string;
-  name: string; // shown in the switcher
+  name: string; // shown on the home selector
   label: string; // hero mono label
   headline: string;
   subhead: string;
@@ -13,7 +13,11 @@ export type Track = {
   seoTitle: string;
   seoDescription: string;
   ogImage: string; // 1200×630 PNG in /public/og
-  skills: typeof skillRows;
+  workTitle: string; // heading of the "Selected work" section
+  about: string;
+  contact: [lead: string, tail: string]; // closing line, tail is shown muted
+  caseLabels: { problem: string; built: string; decisions: string; result: string }; // case-study headings
+  skills: { label: string; items: string[] }[];
   showAlsoBuilt: boolean;
 };
 
@@ -29,6 +33,11 @@ export const tracks: Track[] = [
     seoDescription:
       "Full-stack developer building fast, reliable web and mobile products with React, Next.js, TypeScript and Node.js.",
     ogImage: "/og/dev.png",
+    workTitle: "Products I've designed, built and shipped.",
+    about:
+      "I studied law, worked as a junior architect and 3D visualization artist, then taught myself to code. Architecture trained my eye for layout, detail and how people actually use a space, and I bring that to every interface I build. Today I build full-stack products end to end, from Figma designs to production code.",
+    contact: ["Have a product to build?", "Let's talk."],
+    caseLabels: { problem: "The problem", built: "What I built", decisions: "Design decisions", result: "Result" },
     skills: skillRows,
     showAlsoBuilt: true,
   },
@@ -36,14 +45,24 @@ export const tracks: Track[] = [
     slug: "design",
     name: "Design",
     label: "// UI/UX & GRAPHIC DESIGNER",
-    headline: "Clear layouts. Real use.",
-    subhead: "I design interfaces and graphics with an architect's eye for layout and detail, and I build what I design.",
-    blurb: "Interfaces, design systems and graphic design, shaped by a background in architecture.",
-    seoTitle: "George Volski — UI/UX & Graphic Design",
+    headline: "Form follows use.",
+    subhead:
+      "I design web and mobile interfaces, design systems and visuals in Figma and Adobe Creative Suite, with an architect's eye for layout, proportion and detail.",
+    blurb: "Interfaces, design systems, 3D visualization and graphics, shaped by a background in architecture.",
+    seoTitle: "George Volski — UI/UX & Graphic Designer",
     seoDescription:
-      "UI/UX and graphic design work by George Volski: web and mobile interfaces, design systems and visual design.",
+      "UI/UX and graphic design by George Volski: web and mobile interfaces, design systems, 3D visualization and campaign visuals, made in Figma and Adobe Creative Suite.",
     ogImage: "/og/design.png",
-    skills: [skillRows[2], skillRows[0]],
+    workTitle: "Interfaces and visuals, from first sketch to final screen.",
+    about:
+      "Before I designed screens, I designed buildings. As a junior architect and 3D visualization artist I learned proportion, light and how people move through a space. Now I bring that to interfaces: I design in Figma, refine through client reviews, and build component libraries that keep products consistent. And because I write the code too, my designs are made to ship.",
+    contact: ["Have something that needs designing?", "Let's talk."],
+    caseLabels: { problem: "The brief", built: "What I designed", decisions: "Key decisions", result: "Result" },
+    skills: [
+      { label: "Design", items: [...skills.design, "Design systems", "Prototyping", "Graphic design"] },
+      { label: "3D and visualization", items: ["Blender", "Lumion", "Twinmotion", "Archicad"] },
+      { label: "Build what I design", items: ["React", "Next.js", "Tailwind CSS"] },
+    ],
     showAlsoBuilt: false,
   },
 ];

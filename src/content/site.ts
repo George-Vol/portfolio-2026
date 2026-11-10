@@ -14,9 +14,6 @@ export const site = {
   ogImage: "/og/home.png", // 1200×630 PNG in /public/og
 };
 
-export const about =
-  "I studied law, worked as a junior architect and 3D visualization artist, then taught myself to code. Architecture trained my eye for layout, detail and how people actually use a space, and I bring that to every interface I build. Today I build full-stack products end to end, from Figma designs to production code.";
-
 export const skills = {
   development: ["TypeScript", "React", "Next.js", "React Native", "Node.js", "Laravel", "Tailwind CSS"],
   data: ["Firebase", "Supabase", "MongoDB", "MySQL", "Git", "CI/CD"],

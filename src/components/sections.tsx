@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Link from "next/link";
-import { about, alsoBuilt, site } from "@/content/site";
+import { alsoBuilt, site } from "@/content/site";
 import type { Project } from "@/content/projects";
 import type { Track } from "@/content/tracks";
 import { CopyEmail } from "./CopyEmail";
@@ -93,9 +93,9 @@ export function ProjectCard({ project, index, large }: { project: Project; index
   );
 }
 
-export function Work({ projects }: { projects: Project[] }) {
+export function Work({ projects, title }: { projects: Project[]; title: string }) {
   return (
-    <Section id="work" index="01" label="Selected work" title="Products I've designed, built and shipped.">
+    <Section id="work" index="01" label="Selected work" title={title}>
       <div className="grid gap-5 md:grid-cols-2">
         {projects.map((p, i) => (
           <ProjectCard key={p.slug} project={p} index={i} large={i === 0} />
@@ -125,7 +125,7 @@ export function AlsoBuilt() {
   );
 }
 
-export function About({ index }: { index: string }) {
+export function About({ about, index }: { about: string; index: string }) {
   return (
     <Section id="about" index={index} label="About">
       <div className="grid items-center gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
@@ -166,12 +166,12 @@ export function Skills({ track, index }: { track: Track; index: string }) {
   );
 }
 
-export function Contact({ index }: { index: string }) {
+export function Contact({ line, index }: { line: [string, string]; index: string }) {
   return (
     <Section id="contact" index={index} label="Contact">
       <div className="reveal card overflow-hidden rounded-3xl px-6 py-14 sm:px-14 sm:py-20">
         <h2 className="max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.03em] text-balance sm:text-6xl">
-          Have a product to build? <span className="text-muted">Let&apos;s talk.</span>
+          {line[0]} <span className="text-muted">{line[1]}</span>
         </h2>
         <div className="mt-10 flex flex-wrap gap-3">
           <Button href={`mailto:${site.email}`}>{site.email}</Button>
