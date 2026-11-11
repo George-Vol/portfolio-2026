@@ -25,7 +25,6 @@ export default function Home() {
               key={t.slug}
               href={`/${t.slug}`}
               className="reveal card group flex min-h-72 flex-col justify-between rounded-2xl p-7 transition-[translate] duration-300 hover:-translate-y-1 sm:p-9"
-              style={{ "--delay": `${i * 90}ms` } as React.CSSProperties}
             >
               <div className="flex items-start justify-between">
                 <span className="font-mono text-xs text-muted">/{t.slug}</span>

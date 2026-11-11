@@ -1,13 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 // One pointer listener lights the reflective edge of every `.card` on screen (cards near the cursor catch it too),
-// and one observer handles every `.reveal` element, so the cards themselves stay server components.
+// so the cards themselves stay server components. Scroll reveal is pure CSS (see .reveal in globals.css).
 export function Effects() {
-  const pathname = usePathname();
-
   useEffect(() => {
     let raf = 0;
     let x = 0, y = 0;
@@ -33,22 +30,6 @@ export function Effects() {
       window.removeEventListener("pointermove", onMove);
     };
   }, []);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        }),
-      // huge top margin: anything scrolled past (even skipped by a fast scroll) counts as seen
-      { rootMargin: "100000px 0px -8% 0px" },
-    );
-    document.querySelectorAll(".reveal:not(.in)").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, [pathname]);
 
   return null;
 }

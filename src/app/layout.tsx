@@ -29,16 +29,9 @@ export const viewport: Viewport = {
   themeColor: "#0e0e0d",
 };
 
-// Runs before paint: enables reveal animations only when JS is on.
-// Dark only for now; light theme returns with: try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}
-const boot = `document.documentElement.classList.add('js')`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: boot }} />
-      </head>
       <body className="grain flex min-h-full flex-col font-sans">
         <a
           href="#main"

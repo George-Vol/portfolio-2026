@@ -38,11 +38,10 @@ export function Hero({ track }: { track: Track }) {
         </h1>
         <p
           className="reveal mt-8 max-w-xl text-lg leading-relaxed text-muted sm:text-xl"
-          style={{ "--delay": "160ms" } as React.CSSProperties}
         >
           {track.subhead}
         </p>
-        <div className="reveal mt-10 flex flex-wrap gap-3" style={{ "--delay": "240ms" } as React.CSSProperties}>
+        <div className="reveal mt-10 flex flex-wrap gap-3">
           <Button href="#work">
             View my work <Arrow className="rotate-135" />
           </Button>
@@ -64,7 +63,6 @@ export function ProjectCard({ project, index, large }: { project: Project; index
       className={`reveal card group block rounded-2xl p-3 transition-[translate] duration-300 hover:-translate-y-1 ${
         large ? "md:col-span-2" : ""
       }`}
-      style={{ "--delay": `${index * 80}ms` } as React.CSSProperties}
     >
       <Shot
         image={project.cover}
