@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Blueprint } from "@/components/sections";
-import { Arrow, Label, Shot, Tag } from "@/components/ui";
+import { Arrow, Button, Label, Shot, Tag } from "@/components/ui";
 import { projects, projectsFor } from "@/content/projects";
 import { getTrack } from "@/content/tracks";
 
@@ -77,6 +77,11 @@ export default async function CaseStudy({ params }: PageProps<"/[track]/work/[sl
               </div>
             )}
           </dl>
+          {p.live && (
+            <Button href={p.live} target="_blank" rel="noopener noreferrer" className="reveal mt-8">
+              Visit live site <Arrow />
+            </Button>
+          )}
         </header>
 
         <Shot image={p.cover} priority className="reveal mt-12 aspect-[16/9]" sizes="(min-width: 1152px) 1100px, 100vw" />
