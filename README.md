@@ -170,7 +170,7 @@ The card on its branch and the case-study page are generated, and the "Next proj
 | Case-study images | `public/work/<slug>/…`, referenced as `/work/<slug>/…` |
 | CVs | `public/`, one per branch, set by `cv` in `tracks.ts` |
 | Link-preview images | `public/og/<branch>.png`, 1200×630 PNG |
-| Logo and favicon | `src/components/Logo.tsx` and `src/app/icon.svg`, both from the "Logo" frame in the Portfolio Figma file |
+| Logo and favicon | `src/components/Logo.tsx` and `src/app/icon.svg`, both from the "LOGO NEW" frame in the Portfolio Figma file |
 
 Any image with an empty `src` renders a labelled, striped placeholder, so missing images are obvious but never break the layout.
 
@@ -182,8 +182,9 @@ Any image with an empty `src` renders a labelled, striped placeholder, so missin
 | Surface | `#1A1918` → `#262422` | Cards, raised elements |
 | Text | `#F5F5F4` | Headings and body |
 | Muted text | `#A39E98` | Secondary text |
-| Brand red | `#BB1725` | Fills, focus, selection, glow, logo |
-| Red text | `#F0505F` | Small red labels on dark (meets WCAG AA) |
+| Brand red | `#AD0508` | Fills, focus, selection, glow (top band of the logo) |
+| Red text | `#FF2A2E` | Small red labels on dark (meets WCAG AA) |
+| Logo ramp | `#AD0508` `#940407` `#7A0306` `#610305` | The V mark, top band to tip |
 
 - **Type:** Geist for headings and body, Geist Mono for labels and tags.
 - **No blue anywhere.** Text selection, focus rings, tap highlights and form controls all use the brand red.

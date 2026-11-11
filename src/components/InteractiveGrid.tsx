@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 const GAP = 26; // px between dots
 const RADIUS = 130; // cursor influence radius
-const ACCENT = [187, 23, 37]; // #BB1725, keep in sync with --accent
+const ACCENT = [173, 5, 8]; // #AD0508, keep in sync with --accent
 const DOT = 1.5; // base dot size, px
 const ALPHA = 0.24; // base dot opacity: always visible
 
