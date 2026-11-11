@@ -102,7 +102,7 @@ src/
     Effects.tsx                 # scroll reveal + card edge lighting
     ThemeToggle.tsx             # light theme, currently hidden
   content/
-    site.ts                     # name, contact links, photo, shared skills, "Also built"
+    site.ts                     # name, contact links, shared skills, "Also built"
     tracks.ts                   # one entry per branch
     projects.ts                 # case studies
 ```
@@ -113,7 +113,7 @@ All text lives in `src/content`. You should not need to touch components to chan
 
 ### Profile and contact: `site.ts`
 
-Name, email, LinkedIn, photo, home-page SEO, the shared skill lists and the "Also built" list.
+Name, email, LinkedIn, home-page SEO, the shared skill lists and the "Also built" list.
 
 ### Branches: `tracks.ts`
 
@@ -168,10 +168,9 @@ The card on its branch and the case-study page are generated, and the "Next proj
 | File | Where it goes |
 | --- | --- |
 | Case-study images | `public/work/<slug>/…`, referenced as `/work/<slug>/…` |
-| Your photo | `public/about/…`, then set `site.photo` |
 | CVs | `public/`, one per branch, set by `cv` in `tracks.ts` |
 | Link-preview images | `public/og/<branch>.png`, 1200×630 PNG |
-| Favicon | `src/app/icon.svg` (keep it in sync with `src/components/Logo.tsx`) |
+| Logo and favicon | `src/components/Logo.tsx` and `src/app/icon.svg`, both from the "Logo" frame in the Portfolio Figma file |
 
 Any image with an empty `src` renders a labelled, striped placeholder, so missing images are obvious but never break the layout.
 

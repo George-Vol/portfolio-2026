@@ -127,16 +127,9 @@ export function AlsoBuilt() {
 export function About({ about, index }: { about: string; index: string }) {
   return (
     <Section id="about" index={index} label="About">
-      <div className="grid items-center gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
-        <Shot
-          image={{ src: site.photo, alt: "Photo of George Volski" }}
-          className="reveal aspect-[4/5] max-w-sm"
-          sizes="(min-width: 768px) 384px, 100vw"
-        />
-        <p className="reveal text-2xl leading-snug font-medium tracking-tight text-balance sm:text-3xl">
-          {about}
-        </p>
-      </div>
+      <p className="reveal max-w-4xl text-2xl leading-snug font-medium tracking-tight text-balance sm:text-3xl">
+        {about}
+      </p>
     </Section>
   );
 }
