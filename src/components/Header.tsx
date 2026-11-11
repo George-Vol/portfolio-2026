@@ -25,7 +25,7 @@ export function Header() {
             }
           }}
           className="group flex items-center gap-2.5 font-medium tracking-tight">
-          <Logo className="size-7 transition-transform duration-300 group-hover:scale-110" />
+          <Logo className="h-7 w-auto transition-transform duration-300 group-hover:scale-110" />
           <span className="hidden sm:inline">George Volski</span>
         </Link>
 
