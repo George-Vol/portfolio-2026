@@ -1,0 +1,47 @@
+export const meta = {
+  title: "Open Bench, a repair-tracking site I designed and built",
+  summary: "A Next.js site where you get a fixed repair quote, book a box and watch your device being fixed step by step.",
+  role: "Designer & Full-Stack Developer",
+  year: "2026",
+  repo: "https://github.com/George-Vol/open-bench",
+  tags: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+  cover: { src: "/work/open-bench/website-cover.webp", alt: "The Open Bench website on desktop and mobile, with the fixed-price quote" },
+  order: 2,
+}
+
+<Section label="The problem">
+
+Most repairs happen out of sight: you hand over your phone, wait, pay and hope. Open Bench is a fictional mail-in repair workshop I created where you can watch: a fixed price first, a padded box in the post, and a photo of every step on the bench.
+
+I designed the brand and the product in Figma, then built the site in Next.js with the brand tokens in Tailwind.
+
+</Section>
+
+<Section label="What I built">
+
+- A landing page with a working quote: pick your device and what's wrong, and the fixed price appears straight away.
+- An in-app quote flow where you can pick several faults at once. The fixed price adds them up, and anything without a listed price becomes a free check.
+- Demo sign-up and log-in with a one-click demo account. Everything lives in the browser tab, so nothing you type is stored.
+- A repairs list and a repair page with a timeline, a photo log of each step, a question when the technician finds something extra, and payment once it's fixed.
+- Tests for the quote, repair and session logic using Node's built-in test runner.
+
+</Section>
+
+<Section label="Accessibility">
+
+The audience includes parents, older people and people with low vision, so the bar was WCAG 2.2 AA from 320px phones up.
+
+- A custom Select that follows the combobox pattern, keyboard-friendly tabs, a labelled progress bar and live regions that announce changes.
+- I checked every page and state with axe and fixed what it found: one main landmark per page, the right heading order, and clear hover, focus and disabled states.
+
+</Section>
+
+<Img src="/work/open-bench/product.webp" alt="The product screens: quote flow, repair timeline, extra-repair question and payment" aspect="1920/2608" />
+
+<Img src="/work/open-bench/website.webp" alt="One repair, five stops: the Open Bench website on desktop and mobile" aspect="1920/2824" />
+
+<Callout label="Result">
+
+A working site from the first quote to payment, with tests for the quote, repair and session logic and an axe check on every page and state. Open Bench is fictional: prices and claims are placeholders.
+
+</Callout>
