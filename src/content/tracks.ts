@@ -1,5 +1,5 @@
 // A "track" is one side of the portfolio (/dev, /design, ...).
-// To add a new one: add an entry here and tag projects with its slug in projects.ts.
+// To add a new one: add an entry here and a folder of case studies at src/content/work/<slug>/.
 
 import { skillRows, skills } from "./site";
 
@@ -17,7 +17,6 @@ export type Track = {
   workTitle: string; // heading of the "Selected work" section
   about: string;
   contact: [lead: string, tail: string]; // closing line, tail is shown muted
-  caseLabels: { problem: string; built: string; decisions: string; result: string }; // case-study headings
   skills: { label: string; items: string[] }[];
   showAlsoBuilt: boolean;
 };
@@ -39,8 +38,7 @@ export const tracks: Track[] = [
     about:
       "I studied law, worked as a junior architect and 3D visualization artist, then taught myself to code. Architecture trained my eye for layout, detail and how people actually use a space, and I bring that to every interface I build. Today I build full-stack products end to end, from Figma designs to production code.",
     contact: ["Have a product to build?", "Let's talk."],
-    caseLabels: { problem: "The problem", built: "What I built", decisions: "Design decisions", result: "Result" },
-    skills: skillRows,
+      skills: skillRows,
     showAlsoBuilt: true,
   },
   {
@@ -60,8 +58,7 @@ export const tracks: Track[] = [
     about:
       "Before I designed screens, I designed buildings. As a junior architect and 3D visualization artist I learned proportion, light and how people move through a space. Now I bring that to interfaces: I design in Figma, refine through client reviews, and build component libraries that keep products consistent. And because I write the code too, my designs are made to ship.",
     contact: ["Have something that needs designing?", "Let's talk."],
-    caseLabels: { problem: "The brief", built: "What I designed", decisions: "Key decisions", result: "Result" },
-    skills: [
+      skills: [
       { label: "Design", items: [...skills.design, "Design systems", "Prototyping", "Graphic design"] },
       { label: "3D and visualization", items: ["Blender", "Lumion", "Twinmotion", "Archicad"] },
       { label: "Build what I design", items: ["React", "Next.js", "Tailwind CSS"] },

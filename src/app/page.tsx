@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Blueprint } from "@/components/sections";
 import { Arrow, Label, Tag } from "@/components/ui";
-import { projectsFor } from "@/content/projects";
 import { site } from "@/content/site";
 import { tracks } from "@/content/tracks";
+import { getWork } from "@/content/work";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
-export default function Home() {
+export default async function Home() {
+  // published case studies per branch (drafts don't count)
+  const counts = await Promise.all(tracks.map(async (t) => (await getWork(t.slug)).filter((w) => !w.draft).length));
+
   return (
     <section className="relative isolate">
       <Blueprint />
@@ -39,7 +42,7 @@ export default function Home() {
                   {t.skills[0].items.slice(0, 4).map((s) => (
                     <Tag key={s}>{s}</Tag>
                   ))}
-                  <Tag>{projectsFor(t.slug).length} case studies</Tag>
+                  {counts[i] > 0 && <Tag>{`${counts[i]} case ${counts[i] === 1 ? "study" : "studies"}`}</Tag>}
                 </div>
               </div>
             </Link>

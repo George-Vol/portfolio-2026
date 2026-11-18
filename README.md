@@ -40,7 +40,7 @@ Each branch is self-contained. A visitor who lands on `/dev` sees only developme
 
 - **Branches as data.** Each branch (copy, skills, CV, SEO, preview image) is one entry in `src/content/tracks.ts`. Adding `/3d` or `/writing` needs no new components.
 - **A CV per branch.** `/dev` links the development CV and `/design` the design CV. The Download CV button only appears once the branch's PDF exists.
-- **Case studies as data.** Typed objects in `src/content/projects.ts` generate the cards and the pages.
+- **Case studies as MDX files.** Each project is one Markdown + components file with its own layout, any number of images in any shape, embeds and video. Drop a file into a branch folder and its card, page and sitemap entry appear.
 - **Drafts.** Placeholder case studies are shown on the site but kept out of search engines and the sitemap.
 - **Interactive dot grid.** A canvas background whose dots subtly grow and redden near the cursor.
 - **Reflective cards.** Solid cards with a thin metallic edge that catches the light where the cursor is.
@@ -54,6 +54,7 @@ Each branch is self-contained. A visitor who lands on `/dev` sees only developme
 - [React 19](https://react.dev) and [TypeScript](https://www.typescriptlang.org)
 - [Tailwind CSS 4](https://tailwindcss.com)
 - [Geist and Geist Mono](https://vercel.com/font) via `next/font`
+- [MDX](https://mdxjs.com) via `@next/mdx` for case studies
 - No other runtime dependencies
 
 ## Getting started
@@ -96,6 +97,7 @@ src/
     sitemap.ts  robots.ts
   components/
     sections.tsx                # Hero, Work, Also built, About, Skills, Contact
+    mdx.tsx                     # building blocks for case studies (Section, Img, Grid, Phone, Embed, Video, Callout)
     ui.tsx                      # Button, Tag, Label, Section, Shot (image or placeholder)
     Header.tsx  Footer.tsx  Logo.tsx  CopyEmail.tsx
     InteractiveGrid.tsx         # cursor-reactive dot grid (canvas)
@@ -104,7 +106,12 @@ src/
   content/
     site.ts                     # name, contact links, shared skills, "Also built"
     tracks.ts                   # one entry per branch
-    projects.ts                 # case studies
+    work.ts                     # finds and loads the case-study files
+    work/
+      _template.mdx             # copy this to start a new case study
+      dev/meridian.mdx          # one file per case study, per branch
+      design/meridian.mdx
+  mdx-components.tsx            # makes the building blocks available in every .mdx file
 ```
 
 ## Editing content
@@ -121,7 +128,6 @@ Each branch sets:
 
 - hero label, headline and subhead, and its blurb on the home selector
 - work-section title, about text and contact line
-- case-study headings (for example "What I built" on `/dev`, "What I designed" on `/design`)
 - skills rows
 - CV file, SEO title and description, and preview image
 
@@ -130,38 +136,59 @@ Each branch sets:
 1. Add an entry to `tracks` with `slug: "3d"`.
 2. Add a 1200×630 PNG at `public/og/3d.png` and point `ogImage` at it.
 3. Add its CV to `public/` and point `cv` at it (optional: no file, no button).
-4. Tag projects with `track: "3d"`.
+4. Create a folder `src/content/work/3d/` for its case studies.
 
 It appears on the home selector and gets its own pages and sitemap entry.
 
-### Case studies: `projects.ts`
+### Case studies: `src/content/work/<branch>/<slug>.mdx`
 
-Add an object to `projects`:
+Every case study is its own MDX file: Markdown plus a few layout components. Each one can have its own structure, as many images as it needs and any image shapes.
 
-```ts
-{
-  slug: "booking-app",              // URL: /dev/work/booking-app
-  track: "dev",
+**Add a project:**
+
+1. Copy `src/content/work/_template.mdx` into `src/content/work/dev/` or `src/content/work/design/`.
+2. Rename it. The file name is the URL: `booking-app.mdx` becomes `/dev/work/booking-app`.
+3. Fill in `meta` at the top, write the story, and delete the blocks you don't need.
+4. Put images in `public/work/<slug>/` and reference them as `/work/<slug>/file.webp`.
+
+The same project can appear on both branches with different stories: give it a file in each folder (Meridian does this).
+
+**`meta`** (the card and the page header):
+
+```js
+export const meta = {
   title: "Booking app for a clinic network",
-  summary: "Online booking that replaced phone scheduling.",
+  summary: "Online booking that replaced phone scheduling.",   // shown on the card
   role: "Full-Stack Developer & Designer",
   year: "2025",
-  tags: ["Next.js", "TypeScript", "Supabase"],   // 3–4; empty hides the row
-  cover: { src: "/work/booking-app/cover.png", alt: "Booking app dashboard" },
-  problem: "2–3 sentences on what was broken or missing.",
-  built: ["What I built, 1", "What I built, 2", "What I built, 3"],
-  design: {
-    text: "Key design decisions and why.",
-    images: [{ src: "/work/booking-app/figma-1.png", alt: "Figma screen" }],
-  },
-  result: "The real outcome. Never invent numbers.",
-  gallery: [{ src: "/work/booking-app/shot-1.png", alt: "Booking flow" }],
+  cover: { src: "/work/booking-app/cover.webp", alt: "Booking app dashboard" },
+  tags: ["Next.js", "TypeScript", "Supabase"],   // optional
+  live: "https://example.com",                    // optional: "Visit live site" button
+  repo: "https://github.com/you/repo",            // optional: "View code" button
+  order: 2,                                       // optional: lower comes first (default 100)
+  size: "large",                                  // optional: full-width card (default: first card only)
+  coverAspect: "4/3",                             // optional: shape of the cover (default 16/9)
+  draft: true,                                    // optional: hide from Google and the sitemap
 }
 ```
 
-The card on its branch and the case-study page are generated, and the "Next project" link cycles through the branch.
+**The body** is free-form. Plain Markdown works (`## headings`, paragraphs, `- lists`, `[links](https://…)`, `> quotes`, `![images](/work/…)`), plus these blocks, available in every file without importing:
 
-**Drafts.** The placeholder projects have `draft: true`. Drafts are visible on the site but marked `noindex` and left out of the sitemap. Remove the flag once the real content is in.
+| Block | What it does |
+| --- | --- |
+| `<Section label="The problem">…</Section>` | Labelled block: label on the left, content on the right |
+| `<Img src alt aspect="16/9" fit="contain" caption />` | One optimised image in any shape; `fit="contain"` shows the whole image |
+| `<Grid cols={3}>…</Grid>` | Put anything side by side, 1–4 columns; stacks on phones |
+| `<Phone src alt caption />` | A mobile screenshot in a phone frame |
+| `<Embed src title aspect />` | A Figma prototype (Share → Embed), YouTube or a live demo |
+| `<Video src poster caption />` | A video file from `public/`; never autoplays |
+| `<Callout label="Result">…</Callout>` | A highlighted box |
+
+Leave a blank line after an opening tag and before its closing tag so the Markdown inside is formatted. `_template.mdx` shows every block in use.
+
+If `meta` is missing a required field, the build stops and names the file.
+
+**Drafts.** The placeholder projects have `draft: true`. Drafts are visible on the site but marked `noindex`, left out of the sitemap and not counted on the home page. Remove the flag once the real content is in.
 
 ## Images and files
 

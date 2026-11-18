@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local Claude Code tooling
 .claude/
+
+# design-detector cache
+.impeccable/hook.cache.json

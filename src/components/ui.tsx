@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import type { Image as Img } from "@/content/projects";
+import type { Image as Img } from "@/content/work";
 
 export function Tag({ children }: { children: ReactNode }) {
   return (
@@ -71,16 +71,23 @@ export function Shot({
   className = "",
   sizes = "(min-width: 1024px) 66vw, 100vw",
   priority,
+  aspect,
+  fit = "cover",
 }: {
   image: Img;
   className?: string;
   sizes?: string;
   priority?: boolean;
+  aspect?: string; // any CSS aspect-ratio, e.g. "16/9"; or set it with a className
+  fit?: "cover" | "contain"; // contain shows the whole image (letterboxed)
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-xl border border-line bg-raised ${className}`}>
+    <div
+      className={`relative overflow-hidden rounded-xl border border-line bg-raised ${className}`}
+      style={aspect ? { aspectRatio: aspect } : undefined}
+    >
       {image.src ? (
-        <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className="object-cover" />
+        <Image src={image.src} alt={image.alt} fill sizes={sizes} priority={priority} className={fit === "contain" ? "object-contain" : "object-cover"} />
       ) : (
         <div
           role="img"

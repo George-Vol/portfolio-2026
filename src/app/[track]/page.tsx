@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { About, AlsoBuilt, Contact, Hero, Skills, Work } from "@/components/sections";
-import { projectsFor } from "@/content/projects";
 import { getTrack, tracks } from "@/content/tracks";
+import { getWork } from "@/content/work";
 
 // Every param is prerendered at build, so navigation is already instant; skip the dev-only Suspense check.
 export const instant = false;
@@ -35,7 +35,7 @@ export default async function TrackPage({ params }: PageProps<"/[track]">) {
   return (
     <>
       <Hero track={track} />
-      <Work projects={projectsFor(track.slug)} title={track.workTitle} />
+      <Work projects={await getWork(track.slug)} title={track.workTitle} />
       {track.showAlsoBuilt && <AlsoBuilt />}
       <About about={track.about} index={next()} />
       <Skills track={track} index={next()} />

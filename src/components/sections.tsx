@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Link from "next/link";
 import { alsoBuilt, site } from "@/content/site";
-import type { Project } from "@/content/projects";
+import type { Work as WorkItem } from "@/content/work";
 import type { Track } from "@/content/tracks";
 import { CopyEmail } from "./CopyEmail";
 import { Arrow, Button, Label, Section, Shot, Tag } from "./ui";
@@ -56,7 +56,7 @@ export function Hero({ track }: { track: Track }) {
   );
 }
 
-export function ProjectCard({ project, index, large }: { project: Project; index: number; large?: boolean }) {
+export function ProjectCard({ project, index, large }: { project: WorkItem; index: number; large?: boolean }) {
   return (
     <Link
       href={`/${project.track}/work/${project.slug}`}
@@ -74,7 +74,7 @@ export function ProjectCard({ project, index, large }: { project: Project; index
           <p className="font-mono text-xs text-muted">{String(index + 1).padStart(2, "0")}</p>
           <h3 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">{project.title}</h3>
           <p className="mt-2 text-muted">{project.summary}</p>
-          {project.tags.length > 0 && (
+          {!!project.tags?.length && (
             <div className="mt-4 flex flex-wrap gap-2">
               {project.tags.map((t) => (
                 <Tag key={t}>{t}</Tag>
@@ -90,12 +90,12 @@ export function ProjectCard({ project, index, large }: { project: Project; index
   );
 }
 
-export function Work({ projects, title }: { projects: Project[]; title: string }) {
+export function Work({ projects, title }: { projects: WorkItem[]; title: string }) {
   return (
     <Section id="work" index="01" label="Selected work" title={title}>
       <div className="grid gap-5 md:grid-cols-2">
         {projects.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} index={i} large={i === 0} />
+          <ProjectCard key={p.slug} project={p} index={i} large={p.size ? p.size === "large" : i === 0} />
         ))}
       </div>
     </Section>

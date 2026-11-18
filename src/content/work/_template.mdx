@@ -1,0 +1,71 @@
+{/*
+  CASE-STUDY TEMPLATE (this file is ignored because its name starts with "_").
+
+  To add a project:
+    1. Copy this file into src/content/work/dev/ or src/content/work/design/ (or any branch folder).
+    2. Rename it: the file name becomes the URL, e.g. booking-app.mdx -> /dev/work/booking-app
+    3. Fill in `meta`, write the story below, delete the blocks you don't need.
+    4. Put images in public/work/<slug>/ and reference them as "/work/<slug>/file.webp".
+
+  Everything below `meta` is free-form: use as many sections and images as the project needs,
+  in any order. Plain Markdown works everywhere (## headings, paragraphs, - lists, [links](https://…), > quotes).
+*/}
+
+export const meta = {
+  title: "Project title",
+  summary: "One line for the card: what it is and who it's for.",
+  role: "Full-Stack Developer & Designer",
+  year: "2026",
+  cover: { src: "/work/my-project/cover.webp", alt: "Describe the cover image" },
+  tags: ["Next.js", "TypeScript"],               // optional, 3–4 reads best
+  live: "https://example.com",                    // optional: adds a "Visit live site" button
+  repo: "https://github.com/you/repo",            // optional: adds a "View code" button
+  order: 2,                                       // optional: lower comes first (default 100)
+  size: "normal",                                 // optional: "large" makes the card full width
+  coverAspect: "16/9",                            // optional: shape of the cover under the title
+  draft: true,                                    // optional: hide from Google and the sitemap
+}
+
+{/* A labelled block. Label on the left, anything on the right. */}
+<Section label="The problem">
+
+Two or three sentences: who had the problem, what was broken or missing, and why it mattered.
+
+</Section>
+
+<Section label="What I built">
+
+- First thing you built
+- Second thing you built
+- Third thing you built
+
+</Section>
+
+{/* One image. aspect = any ratio ("16/9", "4/3", "1/1", "1440/900"). fit="contain" shows the whole image. */}
+<Img src="/work/my-project/screen.webp" alt="Describe it" aspect="16/9" caption="Optional caption" />
+
+{/* Side by side: cols = 1, 2, 3 or 4. Stacks on phones. Anything can go inside. */}
+<Grid cols={3}>
+  <Img src="/work/my-project/a.webp" alt="A" aspect="4/3" />
+  <Img src="/work/my-project/b.webp" alt="B" aspect="4/3" />
+  <Img src="/work/my-project/c.webp" alt="C" aspect="4/3" />
+</Grid>
+
+{/* Mobile screenshots in a phone frame. */}
+<Grid cols={4}>
+  <Phone src="/work/my-project/m1.webp" alt="Home screen" caption="Home" />
+  <Phone src="/work/my-project/m2.webp" alt="Detail screen" caption="Detail" />
+</Grid>
+
+{/* A Figma prototype, YouTube video or live demo in a frame. For Figma: Share -> Embed -> copy the src URL. */}
+<Embed src="https://embed.figma.com/proto/FILE_KEY?embed-host=share" title="Figma prototype" aspect="16/10" />
+
+{/* A video file from /public (never autoplays). */}
+<Video src="/work/my-project/demo.mp4" poster="/work/my-project/demo-poster.webp" caption="Demo" />
+
+{/* A highlighted box. */}
+<Callout label="Result">
+
+The real outcome. Never invent numbers.
+
+</Callout>
