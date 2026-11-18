@@ -1,0 +1,69 @@
+export const meta = {
+  title: "Meridian, a digital bank I designed and built",
+  summary: "A marketing site and a working web app that put a person's whole financial life in one view.",
+  role: "Designer & Full-Stack Developer",
+  year: "2026",
+  live: "https://meridian-coral-alpha.vercel.app/",
+  tags: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+  cover: { src: "/work/meridian/dev-landing.webp", alt: "Meridian landing page hero, designed in Figma" },
+  order: 1,
+}
+
+<Section label="The problem">
+
+Most people's money is spread across a bank app, a savings app, a brokerage and a card, so nobody has one clear picture. Meridian is a fictional digital bank I created to fix that: one view of everything, with plain-language insights about what changed and what you could do next.
+
+</Section>
+
+## What I built
+
+A marketing site and a working preview of the logged-in app in Next.js, React and TypeScript. It runs entirely in the browser on sample data, so there's no backend to set up.
+
+<Grid cols={2}>
+<Callout label="Five app areas">
+
+Today, Accounts with search, filters, recategorising and split payments, Goals with a monthly plan that updates the finish date, Pay with a keypad and review step, and Insights.
+
+</Callout>
+<Callout label="Undo everything">
+
+A client-side store where every action can be undone, with tests for the state and goal-date logic using Node's built-in test runner.
+
+</Callout>
+<Callout label="Accessible components">
+
+A component kit with no UI libraries, including a custom Select that follows the WAI-ARIA combobox pattern, and hover, focus, disabled and loading states on every control.
+
+</Callout>
+<Callout label="Ready to share">
+
+Sign-up with inline validation, a one-click demo login, and full SEO: metadata, Open Graph images, sitemap and a web manifest.
+
+</Callout>
+</Grid>
+
+<Img src="/work/meridian/dev-overview.webp" alt="See where you stand: every account added up to one number" aspect="1440/820" />
+
+## Designed first, then built
+
+I designed the product in Figma before building it, so the code follows one system. The brand idea is direction through understanding, and the home screen turns it into a route: a line from today's balance to each savings goal, ending at the star from the logo. Colours, type, radii and motion all come from the brand guidelines as Tailwind tokens.
+
+<Grid cols={4}>
+  <Phone src="/work/meridian/ios-today.webp" alt="Today: total balance and the route to each goal" caption="Today" />
+  <Phone src="/work/meridian/ios-insight.webp" alt="Insight: subscriptions are up $42 a month since March" caption="Insight" />
+  <Phone src="/work/meridian/ios-emergency.webp" alt="Emergency fund goal and monthly plan" caption="Goal" />
+  <Phone src="/work/meridian/ios-review.webp" alt="Review step before sending money" caption="Send" />
+</Grid>
+
+<Img src="/work/meridian/dev-route.webp" alt="Set a goal, see the route: the route from today to each savings goal" aspect="1440/640" />
+
+<Grid cols={2}>
+  <Img src="/work/meridian/dev-insights.webp" alt="It tells you what changed: the subscriptions insight" aspect="1440/860" />
+  <Img src="/work/meridian/dev-send.webp" alt="Send money: the review and sent screens" aspect="1440/900" />
+</Grid>
+
+<Callout label="Result">
+
+The public pages score 100 in Lighthouse for performance, accessibility, best practices and SEO. The app works from 320px phones to wide desktops, with full keyboard support and reduced-motion support.
+
+</Callout>
